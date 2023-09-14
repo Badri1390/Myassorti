@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles1.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,400&family=Pattaya&display=swap" rel="stylesheet">
+    <title>Meat</title>
+
+    <script
+      src="https://api-maps.yandex.ru/2.1/?apikey=3c30c838-2d58-4a48-9472-be0028110166&lang=ru_RU"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      ymaps.ready(function () {
+        var myMap = new ymaps.Map(
+            "map",
+            {
+              center: [55.791289069276125, 37.93474979847526],
+              zoom: 14,
+            },
+            {
+              searchControlProvider: "yandex#search",
+            }
+          ),
+          // Создаём макет содержимого.
+          MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+            '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+          ),
+          myPlacemark = new ymaps.Placemark(
+            myMap.getCenter(),
+            {
+              hintContent: "Собственный значок метки",
+              balloonContent: "Это красивая метка",
+            },
+            {
+              // Опции.
+              // Необходимо указать данный тип макета.
+              iconLayout: "default#image",
+              // Своё изображение иконки метки.
+              iconImageHref: "",
+              // Размеры метки.
+              iconImageSize: [30, 42],
+              // Смещение левого верхнего угла иконки относительно
+              // её "ножки" (точки привязки).
+              iconImageOffset: [-5, -38],
+            }
+          ),
+          myPlacemarkWithContent = new ymaps.Placemark(
+            [55.791289069276125, 37.93474979847526],
+            {
+              hintContent: "Мяссорти",
+              balloonContent: "А эта — новогодняя",
+              iconContent: "12",
+            },
+            {
+              // Опции.
+              // Необходимо указать данный тип макета.
+              iconLayout: "default#imageWithContent",
+              // Своё изображение иконки метки.
+              iconImageHref: "./img/logo.png",
+              // Размеры метки.
+              iconImageSize: [30, 30],
+              // Смещение левого верхнего угла иконки относительно
+              // её "ножки" (точки привязки).
+              iconImageOffset: [-24, -24],
+              // Смещение слоя с содержимым относительно слоя с картинкой.
+              iconContentOffset: [15, 15],
+              // Макет содержимого.
+              iconContentLayout: MyIconContentLayout,
+            }
+          );
+
+        myMap.geoObjects.add(myPlacemark).add(myPlacemarkWithContent);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <a href="index.html">Мяссорти</a>
+          
+        </div>
+        <nav>
+          <a href="#" class="dostavka_btn">Доставка и оплата</a>
+          <a href="#" class="contacts_btn">Контакты</a>
+          <!-- <a href="#">О нас</a> -->
+          <div class="cart">
+            <a href="#">Корзина</a> <img src="./img/cart.png" alt="cart" />
+            <span class="cart_count"></span>
+          </div>
+        </nav>
+      </header>
+      <main>
+      <section class="menu">
+        <div class="element_menu beef">&#128046;Говядина</div>
+        <div class="element_menu pig">&#128022;Свинина</div>
+        <div class="element_menu pig">&#128015;Баранина</div>
+        <div class="element_menu chiсken">&#128019;Курица</div>
+        <div class="element_menu turkey">&#129411;Индейка</div>
+        <div class="element_menu fish">&#128031;Рыба</div>
+      </section>
+      <section class="assortiment">
+        <div class="beef_catalog catalogs">
+          <div class="card" id="1" style="width: 18rem">
+            <img src="./img/steik.jpg" class="card-img-top" alt="beef" />
+            <div class="card-body">
+              <h5 class="card-title">Столовый край</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 630 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" id="2" style="width: 18rem">
+            <img src="./img/fileyniy.jpg" class="card-img-top" alt="fileyniy" />
+            <div class="card-body">
+              <h5 class="card-title">Филейный край</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 630 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="3">
+            <img
+              src="https://fileshki.ru/wp-content/uploads/2020/06/sheja-govjazhja-fileshki.jpg"
+              class="card-img-top"
+              alt="fileyniy"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Шейная часть</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 630 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="4">
+            <img
+              src="https://static.insales-cdn.com/images/products/1/1396/306570612/%D0%BC%D1%8F%D1%81%D0%BE-%D0%BB%D0%BE%D0%BF.jpg"
+              class="card-img-top"
+              alt="fileyniy"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Лопаточная часть</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 630 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="5">
+            <img
+              src="https://static.insales-cdn.com/images/products/1/2289/306571505/%D0%B2%D1%8B%D1%80%D0%B5%D0%B7%D0%BA%D0%B0_.jpg"
+              class="card-img-top"
+              alt="fileyniy"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Вырезка</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 1350 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="6">
+            <img
+              src="https://cross.expert/wp-content/uploads/2019/02/govjadina.jpeg"
+              class="card-img-top"
+              alt="fileyniy"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Филе говядины</h5>
+              <p class="card-text">охлаждённое,</p>
+              <span class="coast">1кг = 760 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="7">
+            <img
+              src="https://rassvetagro.ru/wp-content/uploads/2020/05/farsh-govyazhij-1-kg.jpg"
+              class="card-img-top"
+              alt="fileyniy"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Фарш говяжий</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 630 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="8">
+            <img
+              src="https://static.insales-cdn.com/images/products/1/7629/238935501/1.jpg"
+              class="card-img-top"
+              alt="fileyniy"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Хвост говяжий</h5>
+              <p class="card-text">из охлаждённой говядины,</p>
+              <span class="coast">1кг = 420 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pig_catalog catalogs">
+          <div class="card" style="width: 18rem" id="9">
+            <img
+              src="https://spar-online.ru/upload/iblock/134/13407a3691c23dc8578dbc5174e19a01.png"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Шейка б/к</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 730 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="10">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2015/08/1-5-6-500x333.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Лопатка свиная б/к</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 450 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="11">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2015/08/1-5-5-500x333.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Окорок свиной б/к</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 450 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="12">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2020/09/IMG_6473-500x333.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Карбонад свиной</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 600 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="13">
+            <img
+              src="https://yakim.com.ua/content/images/50/480x360l50nn0/svinina-koreyka-n-k-bitok-okhol.-v-u-80714615087645.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Карейка свиная</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 500 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="14">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2015/08/1-5-3-500x333.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Ребра свиные</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 730 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="15">
+            <img
+              src="https://torgvelesmeat.ru/wp-content/uploads/2019/06/LSGKCaBr970-600x480.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Вырезка свиная</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 600 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="16">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2023/01/GroundBeef-300x300.webp"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Фарш домашний</h5>
+              <p class="card-text">свинина + говядина</p>
+              <span class="coast">1кг = 600 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="17">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2022/04/IMG_0065-500x333.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Рулька свиная</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 250 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="18">
+            <img
+              src="https://soglasiesk.ru/wp-content/uploads/2015/08/1-5-4-500x333.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Копыта свиные</h5>
+              <p class="card-text">из охлаждённой свинины,</p>
+              <span class="coast">1кг = 100 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="chicken_catalog catalogs">
+          <div class="card" style="width: 18rem" id="19">
+            <img
+              src="https://s.myspar.ru/upload/img/10/1007/100768789.jpg?1579514398"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Филе грудки</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 460 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="20">
+            <img
+              src="https://vkustro.ru/upload/iblock/2c9/2w3ku6dlsmou4cqe8kik5vh04ht049pp.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Филе бедра</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 475 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="21">
+            <img
+              src="https://fileshki.ru/wp-content/uploads/2020/04/okorochka-kurinye-fileshki.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Окорочка</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 315 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="22">
+            <img
+              src="https://halal-spb.ru/sites/default/files/products/438dce953605d9f26d4cc18d4337134f.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Голень</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 335 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="23">
+            <img
+              src="https://cdn-img.perekrestok.ru/i/800x800-fit/xdelivery/files/7a/a5/c7662534056708dddf806d4e5733.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Бедро</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 325 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="24">
+            <img
+              src="https://img.bigsale.com.ua/2017/12/08/kurinye-krylyshki-po-nizkoy-tsene-v-64940_5a2a7f5b2c56a_org.png"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Крыло куриное</h5>
+              <p class="card-text">без третьей части,</p>
+              <span class="coast">1кг = 460 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="25">
+            <img
+              src="https://www.gastronom.ru/binfiles/images/20230315/b476ae8d.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Печень</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 275 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="26">
+            <img
+              src="https://www.chefmarket.ru/blog/wp-content/uploads/2018/05/3_1523400500_66337.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Сердце</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 495 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="27">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAtmE8sKWfxaHQa2FPycbjyGOt-I6XPLJCz8R53bgmlyGuvj6F1FQ1Z346D3AHY6BGvFc&usqp=CAU"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Желудки</h5>
+              <p class="card-text">цыпленка-бройлера,</p>
+              <span class="coast">1кг = 265 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="28">
+            <img
+              src="https://мясной-хуторок.рф/image/catalog/galery-kura/Farshkurinyy2.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Фарш</h5>
+              <p class="card-text">из филе цыпленка-бройлера,</p>
+              <span class="coast">1кг = 490 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="29">
+            <img
+              src="https://ferma-chekhov.ru/wa-data/public/shop/products/37/00/37/images/146/146.750.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Курица для жарки</h5>
+              <p class="card-text">домашняя птица,</p>
+              <span class="coast">1кг = 360 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="30">
+            <img
+              src="https://static.insales-cdn.com/images/products/1/6060/503273388/%D0%BA%D1%83%D1%80%D0%B8%D1%86%D0%B0_%D1%81%D1%83%D0%BF%D0%BE%D0%B2%D0%B0%D1%8F.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Курица суповая</h5>
+              <p class="card-text">домашняя птица,</p>
+              <span class="coast">1кг = 360 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="31">
+            <img
+              src="https://veska.shop/upload/slam.image/iblock/af1/900_900_1/af149b6d696d717263f21edec93922b3-90.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Цыпленок</h5>
+              <p class="card-text">домашняя птица,</p>
+              <span class="coast">1шт = 360 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="turkey_catalog catalogs">
+          <div class="card" style="width: 18rem" id="32">
+            <img
+              src="https://primemeat.ru/upload/iblock/131/kka1gdhf6czgboo2yhs66o4tggadhm8v/file_grudki_indeyki_fermerskoy.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Филе грудки</h5>
+              <p class="card-text">индейки,</p>
+              <span class="coast">1кг = 550 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="33">
+            <img
+              src="https://primemeat.ru/upload/webp/iblock/61e/hu11ye59zs70m3tva6p7goxtbhkmjynw/file_bedra_indeyki_fermerskoy.webp"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Филе бедра</h5>
+              <p class="card-text">индейки,</p>
+              <span class="coast">1кг = 600 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="34">
+            <img
+              src="https://cdn.rf.market/363152/c9d0df-730x604.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Плечо</h5>
+              <p class="card-text">индейки,</p>
+              <span class="coast">1кг = 290 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="35">
+            <img
+              src="https://cdn.rf.market/362948/%D0%B8%D0%BD%D0%B4%D0%B5%D0%B9%D0%BA%D0%B0-%D1%88%D0%B5%D1%8F-scaled.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Шейка</h5>
+              <p class="card-text">индейки,</p>
+              <span class="coast">1кг = 290 &#8381;</span>
+              <a href="#" class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem" id="36">
+            <img
+              src="https://halal-spb.ru/sites/default/files/products/022d95b7f81d930fd790fbc8e90c28d1.jpg"
+              class="card-img-top"
+              alt="beef"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Фарш</h5>
+              <p class="card-text">из филе бедра индейки,</p>
+              <span class="coast">1кг = 600 &#8381;</span>
+              <a class="btn btn-primary">Купить</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fish_catalog catalogs">Скоро здесь будет рыба.....</div>
+      </section>
+      <div class="contakts_container">
+        <div class="adress">
+          <h1>Магазин "Мяссорти"</h1>
+          <p>
+            <img class="metka_img" src="./img/metka.png" alt="" />Московская
+            область, Балашиха, Полевая улица, 8
+          </p>
+        </div>
+        <div id="map" style="width: 400px; height: 300px"></div>
+        <div class="mesenger">
+          <div class="mesenger_item">
+            <a
+              title="Telegram"
+              href="tg://msg?text=sss&to=amina3013"
+              target="_blank"
+            >
+              <img src="./img/telegram.png" alt="Написать в Telegram"
+            /></a>
+          </div>
+          <div>
+            <a
+              title="WhatsApp"
+              href="https://wa.me/79299547077?text=ok"
+              target="_blank"
+            >
+              <img src="./img/whatsapp.png" alt="Написать в WhatsApp"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="my_cart_products">
+        <div class="empty-basket">
+          <div class="title">Ваша корзина пуста</div>
+          <div class="description">
+            На этой странице будет отображаться Ваш список товаров. Вы можете
+            выбрать что-либо из каталога.
+          </div>
+          <a href="index.html" class="button_empty_basket"
+            >Вернуться к покупкам</a
+          >
+        </div>
+
+        <div class="zakaz">
+          <form name="my">
+            <div>
+              <input name="name" type="text" placeholder="Введите имя" />
+            </div>
+            <div>
+              <input name="telephon" type="tel" placeholder="Введите номер" />
+            </div>
+            <div class="send_zakaz">Отправить заказ</div>
+          </form>
+        </div>
+      </div>
+
+      <div class="dostavka_oplata">
+        <div class="banner_dostavka">
+          <div class="image">
+            <img src="https://www.m2-shop.ru/img/truck-color.gif" alt="truck" />
+          </div>
+          <div class="text">
+            <p id="to_cities" class="item">
+              По <b>г.Балашиха</b>, действует <b>бесплатная</b> доставка при
+              заказе на сумму
+              <b>от 1000 руб.</b>
+            </p>
+          </div>
+        </div>
+
+        <div class="sposob-oplati">
+          <div class="text">
+            <h2 class="title">Способы оплаты</h2>
+            <ul class="circle">
+              <li>Оплата наличными при получении</li>
+              <li>Банковской картой при получении</li>
+            </ul>
+          </div>
+          <div class="images">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/179/179457.png"
+              alt="visa"
+            />
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/11378/11378185.png"
+              alt="mastercard"
+            />
+            <img
+              src="https://www.sostav.ru/app/public/images/news/2015/07/16/mir%20copy%201.jpg?rand=0.22884611715562642"
+              alt="МИР"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/ru/thumb/c/c7/%D0%A1%D0%91%D0%9F_%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF.svg/359px-%D0%A1%D0%91%D0%9F_%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF.svg.png?20211108071206"
+              alt="сбп"
+            />
+            <img
+              src="https://smile-kem.ru/upload/iblock/74f/74f8f4ec4a16f4e5ae9d6540636e3a9c.jpg"
+              alt="qr"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer_contacts">
+        <a
+          title="Telegram"
+          href="tg://msg?text=sss&to=amina3013"
+          target="_blank"
+        >
+          <img src="./img/telegram.png" alt="Написать в Telegram"
+        /></a>
+
+        <a
+          title="WhatsApp"
+          href="https://wa.me/79299547077?text=ok"
+          target="_blank"
+        >
+          <img src="./img/whatsapp.png" alt="Написать в WhatsApp"
+        /></a>
+      </div>
+      <div>Disined by RBV 2023 &#9426;</div>
+    </footer>
+
+    </div>
+    
+  
+
+    
+
+    <script>
+      let pig = document.querySelector(".pig");
+      let pig_catalog = document.querySelector(".pig_catalog");
+      let beef_catalog = document.querySelector(".beef_catalog");
+      let beef = document.querySelector(".beef");
+      let chicken = document.querySelector(".chiсken");
+      let chicken_catalog = document.querySelector(".chicken_catalog");
+      let turkey = document.querySelector(".turkey");
+      let turkey_catalog = document.querySelector(".turkey_catalog");
+      let fish = document.querySelector(".fish");
+      let fish_catalog = document.querySelector(".fish_catalog");
+      let contacts_btn = document.querySelector(".contacts_btn");
+      let contakts_container = document.querySelector(".contakts_container");
+      let cart = document.querySelector(".cart");
+      let my_cart_products = document.querySelector(".my_cart_products");
+      let buy_btn = document.querySelectorAll(".btn");
+      let kartochka = document.querySelector(".card-img-top");
+      let cart_count = document.querySelector(".cart_count");
+      let dostavka_btn = document.querySelector(".dostavka_btn");
+      let dostavka_oplata = document.querySelector(".dostavka_oplata");
+      let empty_basket = document.querySelector(".empty-basket");
+      let send_zakaz = document.querySelector(".send_zakaz");
+      let zakaz_div = document.querySelector(".zakaz");
+      let menu_elements = document.querySelectorAll(".element_menu");
+      let kg = 0;
+      let a = document.querySelectorAll("a");
+      let count = 1;
+      let txt = `<a href="#" class="btn btn-primary delete_btn" onclick = 'removeFromCart(this)'>Удалить</a>`;
+      let arr = [];
+
+      a.forEach((el) => {
+        if (el.getAttribute("href") == "#") {
+          el.removeAttribute("href");
+        }
+      });
+
+      menu_elements.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.target.classList.toggle("test");
+          menu_elements.forEach((element) => {
+            if (element != e.target) {
+              element.classList.remove("test");
+            }
+          });
+        });
+      });
+
+      buy_btn.forEach((el) => {
+        el.textContent = "В корзину";
+        el.addEventListener("click", (element) => {
+          let div = document.createElement("div");
+          div.classList.add("card");
+          div.style.width = "18rem";
+          div.id = `${element.target.closest(".card").id}`;
+          div.innerHTML = `${element.target
+            .closest(".card")
+            .innerHTML.split("\n")
+            .map((el, i) => (i == 6 ? (el = txt) : el))
+            .join("\n")}
+            <span class="count_kg"><button class="minus" onclick = 'minusKg(this)'>-</button><input type="text" id="txt" value="1"><button class="plus" onclick = 'plusKg(this)'>+</button></span>`;
+          if (arr.includes(div.id)) {
+            alert("Товар уже в корзине!");
+          } else {
+            my_cart_products.append(div);
+            cart_count.textContent = +cart_count.textContent + count;
+            arr.push(div.id);
+            empty_basket.style.display = "none";
+          }
+          if (my_cart_products.hasChildNodes) {
+            zakaz_div.style.display = "flex";
+          }
+        });
+      });
+
+      function plusKg(a) {
+        a.previousSibling.value = Number(a.previousSibling.value) + 1;
+      }
+
+      function minusKg(a) {
+        a.nextSibling.value = Number(a.nextSibling.value) - 1;
+        if (a.nextSibling.value == 0) {
+          removeFromCart(a);
+        }
+      }
+
+      function removeFromCart(w) {
+        w.closest(".card").remove();
+        arr.splice(arr.indexOf(w.closest(".card").id), 1);
+        cart_count.textContent = +cart_count.textContent - count;
+        if (cart_count.textContent == 0) {
+          empty_basket.style.display = "flex";
+          zakaz_div.style.display = "none";
+        }
+      }
+
+      fish.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "flex";
+      });
+
+      beef.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "flex";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "none";
+      });
+      pig.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "flex";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "none";
+      });
+
+      chicken.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "flex";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "none";
+      });
+
+      turkey.addEventListener("click", () => {
+        turkey_catalog.style.display = "flex";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "none";
+      });
+
+      contacts_btn.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "flex";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "none";
+      });
+
+      dostavka_btn.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "none";
+        dostavka_oplata.style.display = "flex";
+        fish_catalog.style.display = "none";
+      });
+
+      cart.addEventListener("click", () => {
+        turkey_catalog.style.display = "none";
+        beef_catalog.style.display = "none";
+        pig_catalog.style.display = "none";
+        chicken_catalog.style.display = "none";
+        contakts_container.style.display = "none";
+        my_cart_products.style.display = "flex";
+        dostavka_oplata.style.display = "none";
+        fish_catalog.style.display = "none";
+      });
+
+      send_zakaz.onclick = () => telegramZakaz();
+
+      async function telegramZakaz() {
+        let nazvanie = my_cart_products.querySelectorAll(".card-title");
+
+        let spisok = [];
+        nazvanie.forEach((el) => {
+          let ves = el.closest(".card").lastChild.childNodes[1].value;
+          let nazvanie = el.textContent;
+          let sostav =
+            el.closest(".card").childNodes[3].childNodes[3].textContent;
+          spisok.push(`${nazvanie} ${sostav} ${ves} кг "\n"`);
+        });
+        spisok.unshift(
+          `Имя: ${document.forms.my.name.value}`,
+          `Телефон: ${document.forms.my.telephon.value}`
+        );
+        try {
+          let response = await fetch(
+            "https://api.telegram.org/bot6386409799:AAHSG6lUIwrWqd6m95JGvESGSjiqJwC1RG4/sendMessage",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json;charset=utf-8",
+              },
+              body: JSON.stringify({
+                chat_id: "@Myassorty",
+                text: spisok.join("\n"),
+              }),
+            }
+          );
+          if (document.forms.my.name.value != "") {
+            alert(
+              `${document.forms.my.name.value},\nВаш заказ отправлен!\nСвяжемся с Вами в ближайшее время.`
+            );
+          } else
+            alert("Ваш заказ отправлен!\nСвяжемся с Вами в ближайшее время.");
+        } catch (error) {
+          console.error(error);
+          alert("Заявка не отправлена, попробуйте позже!");
+        } finally {
+          window.location.href = "index.html";
+        }
+      }
+    </script>
+  </body>
+</html>
