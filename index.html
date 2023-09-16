@@ -798,7 +798,7 @@
           div.innerHTML = `${element.target
             .closest(".card")
             .innerHTML.split("\n")
-            .map((el, i) => (i == 6 ? (el = txt) : el))
+            .map((el, i) => (i == 5 ? (el = txt) : el))
             .join("\n")}
             <span class="count_kg"><button class="minus" onclick = 'minusKg(this)'>-</button><input type="text" id="txt" value="1"><button class="plus" onclick = 'plusKg(this)'>+</button></span>`;
           if (arr.includes(div.id)) {
