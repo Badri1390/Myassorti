@@ -50,7 +50,21 @@ body {
   font-family: "Pattaya", sans-serif;
   letter-spacing: 3px;
   text-decoration: none;
+
+  background: linear-gradient(90deg, #b52f11, #c91909, #ff3333, #ff3399, #e31717);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textflow 5s linear infinite;
 }
+
+@keyframes textflow {
+  from {background-position: 0% center}         
+  to {background-position: 200% center}
+}
+
+
 
 header {
   display: flex;
@@ -73,7 +87,7 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline green;
 }
 
 .dostavka_btn,

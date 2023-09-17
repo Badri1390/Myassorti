@@ -2,6 +2,8 @@ let pig = document.querySelector(".pig");
 let pig_catalog = document.querySelector(".pig_catalog");
 let beef_catalog = document.querySelector(".beef_catalog");
 let beef = document.querySelector(".beef");
+let baranina = document.querySelector(".baranina");
+let baranina_catalog = document.querySelector(".baranina_catalog")
 let chicken = document.querySelector(".chiсken");
 let chicken_catalog = document.querySelector(".chicken_catalog");
 let turkey = document.querySelector(".turkey");
@@ -103,7 +105,9 @@ fish.addEventListener("click", () => {
   contakts_container.style.display = "none";
   my_cart_products.style.display = "none";
   dostavka_oplata.style.display = "none";
+  baranina_catalog.style.display = "none";
   fish_catalog.style.display = "flex";
+  
 });
 
 beef.addEventListener("click", () => {
@@ -115,6 +119,7 @@ beef.addEventListener("click", () => {
   my_cart_products.style.display = "none";
   dostavka_oplata.style.display = "none";
   fish_catalog.style.display = "none";
+  baranina_catalog.style.display = "none";
 });
 pig.addEventListener("click", () => {
   turkey_catalog.style.display = "none";
@@ -125,12 +130,26 @@ pig.addEventListener("click", () => {
   my_cart_products.style.display = "none";
   dostavka_oplata.style.display = "none";
   fish_catalog.style.display = "none";
+  baranina_catalog.style.display = "none";
 });
+
+baranina.addEventListener("click", () => {
+    turkey_catalog.style.display = "none";
+    beef_catalog.style.display = "none";
+    pig_catalog.style.display = "none";
+    chicken_catalog.style.display = "none";
+    contakts_container.style.display = "none";
+    my_cart_products.style.display = "none";
+    dostavka_oplata.style.display = "none";
+    fish_catalog.style.display = "none";
+    baranina_catalog.style.display = "flex";
+  });
 
 chicken.addEventListener("click", () => {
   turkey_catalog.style.display = "none";
   beef_catalog.style.display = "none";
   pig_catalog.style.display = "none";
+  baranina_catalog.style.display = "none";
   chicken_catalog.style.display = "flex";
   contakts_container.style.display = "none";
   my_cart_products.style.display = "none";
@@ -141,6 +160,7 @@ chicken.addEventListener("click", () => {
 turkey.addEventListener("click", () => {
   turkey_catalog.style.display = "flex";
   beef_catalog.style.display = "none";
+  baranina_catalog.style.display = "none";
   pig_catalog.style.display = "none";
   chicken_catalog.style.display = "none";
   contakts_container.style.display = "none";
@@ -158,6 +178,7 @@ contacts_btn.addEventListener("click", () => {
   my_cart_products.style.display = "none";
   dostavka_oplata.style.display = "none";
   fish_catalog.style.display = "none";
+  baranina_catalog.style.display = "none";
   menu.style.display = "none";
 });
 
@@ -171,6 +192,7 @@ dostavka_btn.addEventListener("click", () => {
   dostavka_oplata.style.display = "flex";
   fish_catalog.style.display = "none";
   menu.style.display = "none";
+  baranina_catalog.style.display = "none";
 });
 
 cart.addEventListener("click", () => {
@@ -183,6 +205,7 @@ cart.addEventListener("click", () => {
   dostavka_oplata.style.display = "none";
   fish_catalog.style.display = "none";
   menu.style.display = "none";
+  baranina_catalog.style.display = "none";
 });
 
 btn_vozvrtKpokupkam.addEventListener ("click", () => {
