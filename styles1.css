@@ -276,11 +276,12 @@ nav a:hover {
 .zakaz form {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  box-shadow: 10px 10px 10px rgb(176, 173, 173);
+  gap: 10px;
+  /* box-shadow: 10px 10px 10px rgb(176, 173, 173); */
   box-sizing: border-box;
   margin-bottom: 20px;
 }
+
 
 .zakaz input {
   padding: 5px 18px 5px;
@@ -315,6 +316,10 @@ input:focus:-ms-input-placeholder {
   background: #8ab30f;
   text-align: center;
   outline: none !important;
+}
+
+.zakaz .send_zakaz:active, .vozvrat_k_pokupkam:active {
+  border: 1px solid rgb(48, 52, 43);
 }
 
 .vozvrat_k_pokupkam {

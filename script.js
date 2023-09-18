@@ -227,33 +227,41 @@ async function telegramZakaz() {
     let sostav = el.closest(".card-body").dataset.val;
     spisok.push(`${sostav}: ${nazvanie}  ${ves} кг "\n"`);
   });
-  spisok.unshift(
-    `Имя: ${document.forms.my.name.value}`,
-    `Телефон: ${document.forms.my.telephon.value}\n`
-  );
-  try {
-    let response = await fetch(
-      "https://api.telegram.org/bot6386409799:AAHSG6lUIwrWqd6m95JGvESGSjiqJwC1RG4/sendMessage",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify({
-          chat_id: "@Myassorty",
-          text: spisok.join("\n").replaceAll(`"`, ``),
-        }),
-      }
+
+  if (document.forms.my.telephon.value === "" || document.forms.my.name.value === "") {
+    alert("Поле имя и номер должны быть заполнены!")
+  } else {
+    spisok.unshift(
+      `Имя: ${document.forms.my.name.value}`,
+      `Телефон: ${document.forms.my.telephon.value}\n`
     );
-    if (document.forms.my.name.value != "") {
-      alert(
-        `${document.forms.my.name.value},\nВаш заказ отправлен!\nСвяжемся с Вами в ближайшее время.`
+    try {
+      let response = await fetch(
+        "https://api.telegram.org/bot6386409799:AAHSG6lUIwrWqd6m95JGvESGSjiqJwC1RG4/sendMessage",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({
+            chat_id: "@Myassorty",
+            text: spisok.join("\n").replaceAll(`"`, ``),
+          }),
+        }
       );
-    } else alert("Ваш заказ отправлен!\nСвяжемся с Вами в ближайшее время.");
-  } catch (error) {
-    console.error(error);
-    alert("Заявка не отправлена, попробуйте позже!");
-  } finally {
-    window.location.href = "index.html";
+      if (document.forms.my.name.value != "") {
+        alert(
+          `${document.forms.my.name.value},\nВаш заказ отправлен!\nСвяжемся с Вами в ближайшее время.`
+        );
+      } else alert("Ваш заказ отправлен!\nСвяжемся с Вами в ближайшее время.");
+    } catch (error) {
+      console.error(error);
+      alert("Заявка не отправлена, попробуйте позже!");
+    } finally {
+      document.forms.my.name.value = "";
+      document.forms.my.telephon.value = "";
+      window.location.href = "index.html";
+    }
   }
+
 }
