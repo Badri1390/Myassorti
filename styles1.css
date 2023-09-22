@@ -34,7 +34,9 @@ body {
   flex-direction: column;
   background-color: rgb(255, 240, 240);
 }
+
 .container {
+  margin-top: 65px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -67,11 +69,13 @@ body {
 
 
 header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: #3b3a3a;
-
   box-sizing: border-box;
 }
 
@@ -161,6 +165,7 @@ nav a:hover {
 
 .card {
   flex-basis: 20%;
+
 }
 
 .catalogs {
@@ -622,6 +627,10 @@ main {
     min-height: 120px;
   }
 
+  .my_cart_products, .contakts_container, .dostavka_oplata {
+    margin-top: 50px;
+  }
+
   .count_kg {
     display: flex;
     margin: 0 auto;
@@ -704,6 +713,10 @@ main {
   .card {
     flex-basis: 30%;
     font-size: 13px;
+  }
+
+  .my_cart_products, .contakts_container, .dostavka_oplata {
+    margin-top: 50px;
   }
 
   .card-title {

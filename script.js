@@ -5,6 +5,7 @@ let beef = document.querySelector(".beef");
 let baranina = document.querySelector(".baranina");
 let baranina_catalog = document.querySelector(".baranina_catalog")
 let chicken = document.querySelector(".chiсken");
+let karta_tovara = document.querySelectorAll(".card")
 let chicken_catalog = document.querySelector(".chicken_catalog");
 let turkey = document.querySelector(".turkey");
 let turkey_catalog = document.querySelector(".turkey_catalog");
@@ -65,6 +66,7 @@ buy_btn.forEach((el) => {
     if (arr.includes(div.id)) {
       alert("Товар уже в корзине!");
     } else {
+      element.target.textContent = "Добавлено "+ "\u{2611}"
       my_cart_products.append(div);
       cart_count.textContent = +cart_count.textContent + count;
       arr.push(div.id);
@@ -73,9 +75,9 @@ buy_btn.forEach((el) => {
     if (my_cart_products.hasChildNodes) {
       zakaz_div.style.display = "flex";
     }
+    
   });
 });
-
 function plusKg(a) {
   a.previousSibling.value = Number(a.previousSibling.value) + 1;
 }
@@ -89,6 +91,11 @@ function minusKg(a) {
 
 function removeFromCart(w) {
   w.closest(".card").remove();
+  karta_tovara.forEach(el => {
+    if (el.id ==  w.closest(".card").id) {
+      el.childNodes[3].childNodes[5].textContent = "В корзину"
+    }
+  });
   arr.splice(arr.indexOf(w.closest(".card").id), 1);
   cart_count.textContent = +cart_count.textContent - count;
   if (cart_count.textContent == 0) {
@@ -265,3 +272,5 @@ async function telegramZakaz() {
   }
 
 }
+
+
